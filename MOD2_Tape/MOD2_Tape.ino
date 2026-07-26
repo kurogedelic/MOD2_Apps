@@ -31,6 +31,7 @@
 
 #define SL_AUD 0          // GPIO1 = slice0 channel B
 #define SL_TIK 1          // timebase only, not routed to a pin
+#define SL_LED 2          // GPIO5 = slice2 channel B
 #define BIAS   1937.0f    // measured no-signal ADC center, calibrate per unit
 #define FS     48828.1f   // sample rate (150MHz / 3072)
 #define TAPELEN 180000    // 360KB of SRAM, 3.7s of tape at nominal speed
@@ -63,6 +64,17 @@ static volatile int pot1raw = 0, pot2raw = 0;
 static volatile bool recOn = true, wiping = false;
 static volatile uint32_t wipePtr = 0;
 static volatile float levelMon = 0.0f;
+
+/* The LED runs on the same 146.5kHz carrier as the audio output, and for the same reason.
+ * At exactly three times the sample rate its switching folds to DC when the ADC picks it
+ * up off the shared 3.3V rail. This does not make the LED silent: its current still moves
+ * the rail, and a plain on/off blink is audible on this board. It only keeps the switching
+ * itself from landing somewhere you can hear, which 100kHz did not, folding back to 2.3kHz.
+ */
+static inline void ledSet(int v) {                 // 0..255
+  if (v < 0) v = 0; else if (v > 255) v = 255;
+  pwm_set_gpio_level(5, (uint16_t)(v << 2));
+}
 
 static inline uint16_t adc_oneshot(uint ch) {
   adc_hw->cs = (adc_hw->cs & ~ADC_CS_AINSEL_BITS) | (ch << ADC_CS_AINSEL_LSB);
@@ -174,19 +186,16 @@ void setup() {
 
   for (int i = 0; i < TAPELEN; i++) tape[i] = 0;   // blank tape
 
-  pinMode(5, OUTPUT);                              // LED
-  // The LED shares the 3.3V rail with the analog front end, and analogWrite defaults to
-  // 1kHz in this core, which lands right in the middle of the audio band. Push the
-  // switching well above hearing so the brightness metering costs nothing.
-  analogWriteFreq(100000);
   pinMode(6, INPUT_PULLUP);                        // button is active low
   pinMode(7, INPUT); pinMode(0, INPUT);            // gates, externally pulled
   delay(10);
 
   gpio_set_function(1, GPIO_FUNC_PWM);
+  gpio_set_function(5, GPIO_FUNC_PWM);             // LED, see ledSet()
   pwm_set_wrap(SL_AUD, 1023);                      // 146.5kHz carrier
+  pwm_set_wrap(SL_LED, 1023);                      // the LED shares it, locked to Fs
   pwm_set_wrap(SL_TIK, 3071);                      // 48.83kHz ISR
-  pwm_set_mask_enabled((1u << SL_AUD) | (1u << SL_TIK));
+  pwm_set_mask_enabled((1u << SL_AUD) | (1u << SL_TIK) | (1u << SL_LED));
   pwm_hw->intr = 1u << SL_TIK;
   pwm_hw->inte |= 1u << SL_TIK;
   irq_set_exclusive_handler(PWM_IRQ_WRAP_0, isr);
@@ -232,8 +241,8 @@ void loop() {
     if (heldMs > 1200 && !consumed) {
       consumed = true;
       wipePtr = 0; wiping = true;                  // the ISR sweeps the erase head across
-      for (int i = 0; i < 3; i++) { digitalWrite(5, HIGH); delay(80);
-                                    digitalWrite(5, LOW);  delay(80); }
+      for (int i = 0; i < 3; i++) { ledSet(255); delay(80);
+                                    ledSet(0);  delay(80); }
       Serial.println(">> TAPE ERASED");
     }
   } else {
@@ -246,7 +255,7 @@ void loop() {
 
   if (!wiping) {
     float l = levelMon * 2.0f; if (l > 1.0f) l = 1.0f;
-    analogWrite(5, (int)(l * (recOn ? 255.0f : 60.0f)));   // dim while the loop is held
+    ledSet((int)(l * (recOn ? 255.0f : 60.0f)));   // dim while the loop is held
   }
 
   if (++n >= 250) {                                // log roughly twice a second

@@ -33,6 +33,7 @@
 
 #define SL_AUD 0          // GPIO1 = slice0 channel B
 #define SL_TIK 1          // timebase only, not routed to a pin
+#define SL_LED 2          // GPIO5 = slice2 channel B
 #define BIAS   1937.0f    // measured no-signal ADC center, calibrate per unit
 #define GAIN   0.125f     // output gain
 #define FS     48828.1f   // sample rate (150MHz / 3072)
@@ -84,6 +85,17 @@ static float gTab[GTAB];
  * expects it, which is what gives the decay its snap.
  */
 static float ampTab[GTAB];
+
+/* The LED runs on the same 146.5kHz carrier as the audio output, and for the same reason.
+ * At exactly three times the sample rate its switching folds to DC when the ADC picks it
+ * up off the shared 3.3V rail. This does not make the LED silent: its current still moves
+ * the rail, and a plain on/off blink is audible on this board. It only keeps the switching
+ * itself from landing somewhere you can hear, which 100kHz did not, folding back to 2.3kHz.
+ */
+static inline void ledSet(int v) {                 // 0..255
+  if (v < 0) v = 0; else if (v > 255) v = 255;
+  pwm_set_gpio_level(5, (uint16_t)(v << 2));
+}
 
 static inline uint16_t adc_oneshot(uint ch) {
   adc_hw->cs = (adc_hw->cs & ~ADC_CS_AINSEL_BITS) | (ch << ADC_CS_AINSEL_LSB);
@@ -182,11 +194,6 @@ void setup() {
     ampTab[i] = (expf(EXP_K * x) - 1.0f) * eNorm;   // 0 at rest, 1 wide open
   }
 
-  pinMode(5, OUTPUT);                              // LED
-  // The LED shares the 3.3V rail with the analog front end, and analogWrite defaults to
-  // 1kHz in this core, which lands right in the middle of the audio band. Push the
-  // switching well above hearing so the brightness metering costs nothing.
-  analogWriteFreq(100000);
   pinMode(6, INPUT_PULLUP);                        // button is active low
   pinMode(7, INPUT); pinMode(0, INPUT);            // gate inputs, externally pulled
   delay(10);
@@ -194,9 +201,11 @@ void setup() {
   gateIdle = digitalRead(7);                       // idle level, leave gates unpatched at boot
 
   gpio_set_function(1, GPIO_FUNC_PWM);
+  gpio_set_function(5, GPIO_FUNC_PWM);             // LED, see ledSet()
   pwm_set_wrap(SL_AUD, 1023);                      // 146.5kHz carrier
+  pwm_set_wrap(SL_LED, 1023);                      // the LED shares it, locked to Fs
   pwm_set_wrap(SL_TIK, 3071);                      // 48.83kHz ISR
-  pwm_set_mask_enabled((1u << SL_AUD) | (1u << SL_TIK));
+  pwm_set_mask_enabled((1u << SL_AUD) | (1u << SL_TIK) | (1u << SL_LED));
   pwm_hw->intr = 1u << SL_TIK;
   pwm_hw->inte |= 1u << SL_TIK;
   irq_set_exclusive_handler(PWM_IRQ_WRAP_0, isr);
@@ -233,8 +242,8 @@ void loop() {
       btnGate  = false;                            // drop the gate we were holding
       fmode    = (fmode + 1) % 3;
       for (int i = 0; i <= fmode; i++) {           // blink mode index plus one
-        digitalWrite(5, HIGH); delay(120);
-        digitalWrite(5, LOW);  delay(120);
+        ledSet(255); delay(120);
+        ledSet(0);  delay(120);
       }
       Serial.printf(">> MODE = %s\n", MODE_NAME[fmode]);
     }
@@ -247,7 +256,7 @@ void loop() {
   // LED tracks the envelope, like the lamp inside a vactrol
   if (!consumed || !down) {
     float e = envMon;
-    analogWrite(5, (int)(e * e * 255.0f));         // squared, closer to how the eye reads it
+    ledSet((int)(e * e * 255.0f));         // squared, closer to how the eye reads it
   }
 
   if (++n >= 250) {                                // log roughly twice a second

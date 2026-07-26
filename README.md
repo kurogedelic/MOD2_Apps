@@ -16,6 +16,7 @@ PWM output becomes the processed signal.
 | [Freeverb](MOD2_Freeverb) | Schroeder-Moorer reverb, room size and damping |
 | [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
 | [Harmonizer](MOD2_Harmonizer) | Pitch shifter after the Eventide H910, glitch included |
+| [Delay](MOD2_Delay) | Delay with tap tempo and clock sync |
 
 ## Hardware notes
 
@@ -44,15 +45,17 @@ Common to every app here.
   moves it. Open the serial monitor at 115200 with nothing patched and POT3 centered, then
   copy the reported center value into the `BIAS` define.
 - **The LED puts noise in the audio.** Its current shares the 3.3V rail with the analog
-  front end, and the apps that dim it do so with `analogWrite`. Expect it on every app
-  here.
+  front end. Expect it on every app here, and note that it is not only a switching
+  artifact: a plain on/off blink is audible on this board too, so the coupling is the
+  current itself and no firmware setting removes it.
 
-  The sketches raise the LED PWM to 100kHz, which helps less than it sounds like it
-  should: the ADC runs at 48.83kHz, so anything above Nyquist folds back, and 100kHz lands
-  at `|100000 - 2*48828|` = 2.3kHz. The switching noise moves rather than leaves. Locking
-  the LED PWM to a multiple of the sample rate (48828 or 146484Hz, the same trick the audio
-  carrier uses) would fold it to DC instead; a plain on/off `digitalWrite` avoids the
-  question entirely at the cost of the brightness metering.
+  The sketches do lock the LED PWM to 146.5kHz, exactly three times the sample rate and
+  the same carrier the audio output uses, so the switching folds to DC when the ADC picks
+  it up rather than landing somewhere audible. That much is worth having. `analogWrite`
+  is not used for it: the core defaults to 1kHz, which is plainly audible, and raising it
+  to 100kHz only moves the problem, since anything above Nyquist folds back and 100kHz
+  lands at 2.3kHz. Dropping the LED to a plain on/off `digitalWrite` costs the brightness
+  metering and still does not make it silent.
 
 ## Build
 
