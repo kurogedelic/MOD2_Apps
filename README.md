@@ -6,6 +6,13 @@ MOD2 is a 4HP Eurorack drum module built around a Seeed XIAO RP2350. These sketc
 repurpose it as an audio effect processor: the CV input becomes an audio input, and the
 PWM output becomes the processed signal.
 
+These are written for this module rather than ported onto it. It has one input, two usable
+knobs and two gate jacks, so most effects have to be rethought before they fit: the
+granular app spends no control on density and schedules grains for constant overlap
+instead, the compressor cannot have an audio sidechain but can have a gate one, and the
+spring reverb works precisely because the input rolls off at 7.2kHz. Where a constraint
+came up, the notes in each app say what was done about it.
+
 Apps marked *untested* compile and run but have not been listened to on hardware yet.
 
 ### Filters and dynamics
@@ -108,6 +115,17 @@ arduino-cli compile -b "rp2040:rp2040:seeed_xiao_rp2350:freq=150,arch=arm" --upl
 ```
 
 Disconnect the power ribbon cable before plugging in USB.
+
+## See also
+
+- [HAGIWO's build documentation](https://note.com/solder_state/n/nce8f7defcf98) for the
+  module itself, and [the VCO firmware](https://note.com/solder_state/n/n2214749e92f2),
+  which is the reference for anything involving V/oct.
+- [modulove/MOD2](https://github.com/modulove/MOD2) collects the community firmwares,
+  drums and otherwise, including ports of Braids and Tides. Modulove also host a
+  [browser flasher](https://dl.modulove.io/).
+- [wgd-modular](https://github.com/wgd-modular) make MELON, a revised MOD2, and keep
+  [their own firmware collection](https://github.com/wgd-modular/melon-firmwares).
 
 ## License
 
