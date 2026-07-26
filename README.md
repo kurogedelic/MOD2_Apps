@@ -6,6 +6,8 @@ MOD2 is a 4HP Eurorack drum module built around a Seeed XIAO RP2350. These sketc
 repurpose it as an audio effect processor: the CV input becomes an audio input, and the
 PWM output becomes the processed signal.
 
+Apps marked *untested* compile and run but have not been listened to on hardware yet.
+
 | App | |
 |---|---|
 | [State Variable Filter](MOD2_SVF) | LP, BP, HP and notch, resonance up to Q=30 |
@@ -17,6 +19,10 @@ PWM output becomes the processed signal.
 | [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
 | [Harmonizer](MOD2_Harmonizer) | Pitch shifter after the Eventide H910, glitch included |
 | [Delay](MOD2_Delay) | Delay with tap tempo and clock sync |
+| [Wavefolder](MOD2_Wavefolder) | West coast folding, with symmetry — *untested* |
+| [Compressor](MOD2_Compressor) | Feed-forward, with a gate sidechain — *untested* |
+| [Chorus](MOD2_Chorus) | Chorus, flanger and vibrato from one delay line — *untested* |
+| [Autotune](MOD2_Autotune) | Pitch tracking and correction — *untested* |
 
 ## Hardware notes
 
