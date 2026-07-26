@@ -183,6 +183,10 @@ void setup() {
   }
 
   pinMode(5, OUTPUT);                              // LED
+  // The LED shares the 3.3V rail with the analog front end, and analogWrite defaults to
+  // 1kHz in this core, which lands right in the middle of the audio band. Push the
+  // switching well above hearing so the brightness metering costs nothing.
+  analogWriteFreq(100000);
   pinMode(6, INPUT_PULLUP);                        // button is active low
   pinMode(7, INPUT); pinMode(0, INPUT);            // gate inputs, externally pulled
   delay(10);

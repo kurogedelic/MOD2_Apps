@@ -37,12 +37,16 @@ Common to every app here.
 - **Calibrate `BIAS` per unit.** It is the no-signal ADC center, and component tolerance
   moves it. Open the serial monitor at 115200 with nothing patched and POT3 centered, then
   copy the reported center value into the `BIAS` define.
-- **The LED puts noise in the audio.** It shares the 3.3V rail with the analog front end,
-  and the apps that dim it do so with `analogWrite`, whose default frequency in this core
-  is 1kHz, right in the middle of the audio band. Expect it on every app here. Raising the
-  LED PWM well above hearing with `analogWriteFreq(100000)` in `setup()` takes care of the
-  worst of it; dropping back to a plain on/off `digitalWrite` removes the switching
-  entirely, at the cost of the brightness metering.
+- **The LED puts noise in the audio.** Its current shares the 3.3V rail with the analog
+  front end, and the apps that dim it do so with `analogWrite`. Expect it on every app
+  here.
+
+  The sketches raise the LED PWM to 100kHz, which helps less than it sounds like it
+  should: the ADC runs at 48.83kHz, so anything above Nyquist folds back, and 100kHz lands
+  at `|100000 - 2*48828|` = 2.3kHz. The switching noise moves rather than leaves. Locking
+  the LED PWM to a multiple of the sample rate (48828 or 146484Hz, the same trick the audio
+  carrier uses) would fold it to DC instead; a plain on/off `digitalWrite` avoids the
+  question entirely at the cost of the brightness metering.
 
 ## Build
 
