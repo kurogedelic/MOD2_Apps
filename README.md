@@ -12,6 +12,7 @@ PWM output becomes the processed signal.
 | [Digital Low Pass Gate](MOD2_DLPG) | Buchla-style gate with a simulated vactrol |
 | [Tape](MOD2_Tape) | Endless tape loop, from plain echo to sound piling up forever |
 | [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
+| [Spring](MOD2_Spring) | Spring reverb, dispersion and all |
 
 ## Hardware notes
 
