@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Wavefolder v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Wavefolder  (Seeed XIAO RP2350)
  *
  * A wavefolder. Where a distortion flattens a waveform against a ceiling, a folder turns
  * it back on itself, so peaks come back down and the harmonics it adds move around rather

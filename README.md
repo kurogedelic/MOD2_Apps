@@ -8,21 +8,54 @@ PWM output becomes the processed signal.
 
 Apps marked *untested* compile and run but have not been listened to on hardware yet.
 
+### Filters and dynamics
+
 | App | |
 |---|---|
 | [State Variable Filter](MOD2_SVF) | LP, BP, HP and notch, resonance up to Q=30 |
 | [Digital Low Pass Gate](MOD2_DLPG) | Buchla-style gate with a simulated vactrol |
-| [Tape](MOD2_Tape) | Endless tape loop, from plain echo to sound piling up forever |
-| [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
-| [Spring](MOD2_Spring) | Spring reverb, dispersion and all |
-| [Freeverb](MOD2_Freeverb) | Schroeder-Moorer reverb, room size and damping |
-| [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
-| [Harmonizer](MOD2_Harmonizer) | Pitch shifter after the Eventide H910, glitch included |
-| [Delay](MOD2_Delay) | Delay with tap tempo and clock sync |
-| [Wavefolder](MOD2_Wavefolder) | West coast folding, with symmetry — *untested* |
 | [Compressor](MOD2_Compressor) | Feed-forward, with a gate sidechain — *untested* |
+
+### Distortion
+
+| App | |
+|---|---|
+| [Wavefolder](MOD2_Wavefolder) | West coast folding, with symmetry — *untested* |
+
+### Delay and modulation
+
+| App | |
+|---|---|
+| [Delay](MOD2_Delay) | Tap tempo and clock sync, with triplets and dotted ratios |
+| [Tape](MOD2_Tape) | Endless tape loop, from plain echo to sound piling up forever |
 | [Chorus](MOD2_Chorus) | Chorus, flanger and vibrato from one delay line — *untested* |
+
+### Reverb
+
+| App | |
+|---|---|
+| [Spring](MOD2_Spring) | Dispersion through forty allpasses per spring |
+| [Freeverb](MOD2_Freeverb) | Schroeder-Moorer, room size and damping |
+
+### Pitch
+
+| App | |
+|---|---|
+| [Harmonizer](MOD2_Harmonizer) | After the Eventide H910, glitch included |
 | [Autotune](MOD2_Autotune) | Pitch tracking and correction — *untested* |
+
+### Sampling
+
+| App | |
+|---|---|
+| [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
+| [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
+
+### Utility
+
+| App | |
+|---|---|
+| [Calibrate](MOD2_Calibrate) | Measures `BIAS` for your module, and checks it is alive |
 
 ## Hardware notes
 
@@ -47,9 +80,11 @@ Common to every app here.
   filter, so do not lower the sample rate below ~48kHz.
 - Useful input range is roughly **+/-2.1V**, asymmetric, clipping the negative side first.
   Line level or an attenuated Eurorack signal works well; a raw 10Vpp modular signal clips.
-- **Calibrate `BIAS` per unit.** It is the no-signal ADC center, and component tolerance
-  moves it. Open the serial monitor at 115200 with nothing patched and POT3 centered, then
-  copy the reported center value into the `BIAS` define.
+- **Calibrate `BIAS` per unit.** Every app has a `BIAS` constant, and every one of them is
+  wrong until measured: it is the ADC reading with nothing going in, and component
+  tolerance moves it by hundreds of counts between modules. Theory says 2332; the unit
+  these were written on reads 1937. Build [Calibrate](MOD2_Calibrate), read the figure it
+  prints, and copy it into whichever app you want to run.
 - **The LED puts noise in the audio.** Its current shares the 3.3V rail with the analog
   front end. Expect it on every app here, and note that it is not only a switching
   artifact: a plain on/off blink is audible on this board too, so the coupling is the

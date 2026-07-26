@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Chorus v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Chorus  (Seeed XIAO RP2350)
  *
  * A modulated delay line. Vary the length of a short delay and the copy it produces drifts
  * in pitch against the original; sum the two and the interference between them is the

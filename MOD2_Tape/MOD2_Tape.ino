@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Tape v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Tape  (Seeed XIAO RP2350)
  *
  * An endless loop of tape running past three heads. Sound is laid down, comes back around,
  * and is laid down again on top of itself. How much survives each lap is up to the erase

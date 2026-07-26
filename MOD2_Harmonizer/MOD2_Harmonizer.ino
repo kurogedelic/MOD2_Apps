@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Harmonizer v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Harmonizer  (Seeed XIAO RP2350)
  *
  * After the Eventide H910, the 1975 box that was the first commercial digital audio effect
  * and the reason engineers say "glitch".

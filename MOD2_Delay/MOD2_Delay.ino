@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Delay v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Delay  (Seeed XIAO RP2350)
  *
  * A delay line with feedback, and the one thing a delay in a rack really wants: it can
  * lock to a clock. Hold the button to hand IN1 over to a clock signal, and the time knob

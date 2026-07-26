@@ -1,24 +1,16 @@
-/* HAGIWO MOD2 / State-Variable Filter v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / State Variable Filter  (Seeed XIAO RP2350)
  *
- * Turns the MOD2 drum module into an audio filter.
- * Signal path: CV in (A2/GPIO28) -> ADC @48.83kHz -> DC block -> TPT SVF -> PWM out (GPIO1)
+ * A state-variable filter in the TPT form, which stays stable and in tune however hard the
+ * cutoff and resonance are pushed around underneath it.
  *
- *   POT1 (A0) : cutoff     40Hz - 6kHz (log)
- *   POT2 (A1) : resonance  Q 0.5 - 30  (log)
- *   POT3      : input DC bias - keep centered, not a filter parameter
- *   BUTTON    : cycles filter mode  LP -> BP -> HP -> Notch
- *               (LED blinks mode index + 1 times to confirm)
- *   LED       : signal-present indicator / mode feedback
+ *   POT1   : cutoff, 40Hz - 6kHz (log)
+ *   POT2   : resonance, Q 0.5 - 30 (log)
+ *   POT3   : input DC bias - keep centered, not a parameter
+ *   BUTTON : cycles LP -> BP -> HP -> Notch, blinking the mode index plus one
+ *   LED    : signal present
  *
- * Requirements:
- *   - Rear jumper on the MCU side (high cutoff) for audio use.
- *   - Eurorack +/-12V rail is mandatory: the analog input stage (TL072) is dead on
- *     USB power alone, which pins A2 to a constant and makes POT3/CV do nothing.
- *   - Board: "Raspberry Pi Pico/RP2040/RP2350" core (Earle Philhower), CPU 150MHz.
- *
- * Calibration: BIAS below is the measured no-signal ADC center of one specific unit.
- * Component tolerance shifts it, so read the serial log with no input and POT3 centered,
- * then copy the reported center value into BIAS.
+ * Requirements: same as the other apps here. The Eurorack +/-12V rail is mandatory, the
+ * rear jumper goes to the MCU side, and BIAS below must be calibrated per unit.
  *
  * MIT License - Copyright (c) 2026 Leo Kuroshita
  */

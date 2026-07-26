@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Digital Low Pass Gate v1.2  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Digital Low Pass Gate  (Seeed XIAO RP2350)
  *
  * A Buchla-style low pass gate. One envelope opens amplitude and brightness together
  * through a simulated vactrol, so notes bloom in and decay with the highs falling away

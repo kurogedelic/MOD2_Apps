@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Freeverb v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Freeverb  (Seeed XIAO RP2350)
  *
  * Jezar at Dreampoint's Freeverb, the Schroeder-Moorer reverb that ended up in half the
  * free software of the late nineties. Eight comb filters in parallel build the density,

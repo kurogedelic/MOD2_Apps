@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Spring v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Spring  (Seeed XIAO RP2350)
  *
  * A spring reverb. Not a hall, not a plate: two coiled springs with transducers at each
  * end, which is a very particular and very recognisable way to make a sound last.

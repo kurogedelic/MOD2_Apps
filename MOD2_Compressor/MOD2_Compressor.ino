@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Compressor v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Compressor  (Seeed XIAO RP2350)
  *
  * A feed-forward compressor with a gate sidechain.
  *

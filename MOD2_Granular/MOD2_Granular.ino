@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Granular v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Granular  (Seeed XIAO RP2350)
  *
  * A granular texture processor. The last few seconds of input are always in memory, and a
  * cloud of short overlapping grains is drawn out of that buffer continuously. Move the

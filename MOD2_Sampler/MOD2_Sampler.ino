@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Sampler v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Sampler  (Seeed XIAO RP2350)
  *
  * Record a sound, then fire it back with a gate.
  *

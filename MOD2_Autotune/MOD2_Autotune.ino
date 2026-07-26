@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Autotune v1.0  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Autotune  (Seeed XIAO RP2350)
  *
  * Pitch correction. Work out what note is coming in, decide what note it should have been,
  * and shift the difference. Wind the speed to zero and it snaps, which is the sound
