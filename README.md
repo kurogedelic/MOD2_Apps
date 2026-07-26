@@ -13,6 +13,7 @@ PWM output becomes the processed signal.
 | [Tape](MOD2_Tape) | Endless tape loop, from plain echo to sound piling up forever |
 | [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
 | [Spring](MOD2_Spring) | Spring reverb, dispersion and all |
+| [Freeverb](MOD2_Freeverb) | Schroeder-Moorer reverb, room size and damping |
 
 ## Hardware notes
 
