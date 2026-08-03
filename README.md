@@ -63,6 +63,7 @@ Apps marked *untested* compile and run but have not been listened to on hardware
 | App | |
 |---|---|
 | [Calibrate](MOD2_Calibrate) | Measures `BIAS` for your module, and checks it is alive |
+| [MOD2_UAC](https://github.com/kurogedelic/MOD2_UAC) | USB Audio capture firmware, 48kHz mono input |
 
 ## Hardware notes
 
