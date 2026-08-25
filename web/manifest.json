@@ -1,0 +1,16 @@
+[
+  {"id":"MOD2_SVF","name":"State Variable Filter","category":"Filter","description":"LP, BP, HP and notch modes with resonance up to Q=30.","tested":true},
+  {"id":"MOD2_DLPG","name":"Digital Low Pass Gate","category":"Filter","description":"Buchla-style low-pass gate with a simulated vactrol response.","tested":true},
+  {"id":"MOD2_Compressor","name":"Compressor","category":"Dynamics","description":"Feed-forward compressor with a gate sidechain.","tested":false},
+  {"id":"MOD2_Wavefolder","name":"Wavefolder","category":"Distortion","description":"West-coast style folding with symmetry control.","tested":false},
+  {"id":"MOD2_Delay","name":"Delay","category":"Delay","description":"Tap tempo and clock sync with straight, triplet and dotted ratios.","tested":true},
+  {"id":"MOD2_Tape","name":"Tape","category":"Delay","description":"Endless tape loop from plain echo to continuously piling sound.","tested":true},
+  {"id":"MOD2_Chorus","name":"Chorus","category":"Modulation","description":"Chorus, flanger and vibrato from a single modulated delay line.","tested":false},
+  {"id":"MOD2_Spring","name":"Spring","category":"Reverb","description":"Spring-style dispersion using forty allpasses per spring.","tested":true},
+  {"id":"MOD2_Freeverb","name":"Freeverb","category":"Reverb","description":"Schroeder-Moorer reverb with room size and damping.","tested":true},
+  {"id":"MOD2_Harmonizer","name":"Harmonizer","category":"Pitch","description":"Pitch shifting after the Eventide H910, including the glitches.","tested":true},
+  {"id":"MOD2_Autotune","name":"Autotune","category":"Pitch","description":"Pitch tracking and correction on the MOD2 hardware.","tested":false},
+  {"id":"MOD2_Sampler","name":"Sampler","category":"Sampling","description":"Auto-triggered recording, playable at any speed in either direction.","tested":true},
+  {"id":"MOD2_Granular","name":"Granular","category":"Sampling","description":"Rolling grain buffer with constant overlap scheduling and freeze.","tested":true},
+  {"id":"MOD2_Calibrate","name":"Calibrate","category":"Utility","description":"Measure the per-unit ADC BIAS and verify the input path is alive.","tested":true}
+]
