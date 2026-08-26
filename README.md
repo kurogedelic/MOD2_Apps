@@ -48,7 +48,7 @@ Apps marked *untested* compile and run but have not been listened to on hardware
 
 | App | |
 |---|---|
-| [Harmonizer](MOD2_Harmonizer) | After the Eventide H910, glitch included |
+| [Harmonizer](MOD2_Harmonizer) | Characterful pitch shifting with splice crossfades and feedback |
 | [Autotune](MOD2_Autotune) | Pitch tracking and correction — *untested* |
 
 ### Sampling
