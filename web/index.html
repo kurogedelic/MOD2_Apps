@@ -3,62 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111111">
-  <title>MOD2 Apps — Web Flasher</title>
-  <meta name="description" content="Flash MOD2 firmware directly to a Seeed XIAO RP2350 from a Chromium browser.">
+  <meta name="theme-color" content="#ffffff">
+  <title>MOD2 Apps</title>
+  <meta name="description" content="MOD2 firmware web flasher.">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <main class="shell">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">HÜGELTON / HAGIWO MOD2</p>
-        <h1>MOD2 Apps</h1>
-        <p class="lede">Choose an app and flash it directly to MOD2. No Arduino IDE, no downloaded UF2, no drag-and-drop.</p>
-      </div>
-      <a class="source-link" href="https://github.com/kurogedelic/MOD2_Apps">Source ↗</a>
+    <header class="topbar">
+      <h1>MOD2 Apps</h1>
+      <a href="https://github.com/kurogedelic/MOD2_Apps" aria-label="GitHub repository">GitHub</a>
     </header>
 
-    <section id="browser-warning" class="notice warning hidden" role="alert">
-      WebUSB is not available in this browser. Open this page in Chrome, Edge, Brave, or another Chromium browser on desktop or Android.
-    </section>
-
-    <section class="notice danger">
-      <strong>Before USB:</strong> disconnect the Eurorack power ribbon. Put the XIAO RP2350 in BOOTSEL mode: hold <b>BOOT</b>, tap <b>RESET</b>, then release BOOT.
-    </section>
-
-    <section class="steps" aria-label="Flashing steps">
-      <div><span>1</span><p>Select an app</p></div>
-      <div><span>2</span><p>Enter BOOTSEL</p></div>
-      <div><span>3</span><p>Press Flash to MOD2</p></div>
-    </section>
+    <section id="browser-warning" class="alert hidden" role="alert">WebUSB unavailable.</section>
 
     <section class="toolbar">
-      <label class="search">
-        <span>Search</span>
-        <input id="search" type="search" placeholder="delay, filter, granular…" autocomplete="off">
-      </label>
+      <input id="search" type="search" placeholder="Search" autocomplete="off" aria-label="Search apps">
       <div id="status" class="status" aria-live="polite">Ready</div>
     </section>
 
     <section id="apps" class="apps" aria-live="polite"></section>
-
-    <section class="notice calibration">
-      <strong>BIAS calibration:</strong> the prebuilt apps use the repository's current <code>BIAS</code> values. Flash <b>Calibrate</b> first when setting up a new unit; if your measured value differs, update the source constant and rebuild before treating headroom as calibrated.
-    </section>
-
-    <footer>
-      <p>WebUSB flashing uses <a href="https://github.com/piersfinlayson/picoflash">pico⚡flash</a> (MIT), pinned to a known revision. Firmware source is MIT licensed.</p>
-    </footer>
   </main>
 
   <div id="flash-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="flash-title">
     <div class="flash-panel">
-      <div class="spinner" aria-hidden="true"></div>
-      <h2 id="flash-title">Flashing MOD2</h2>
-      <p id="flash-stage">Preparing firmware…</p>
+      <h2 id="flash-title">Flashing</h2>
+      <p id="flash-stage">Preparing…</p>
       <div class="progress"><div id="progress-bar"></div></div>
-      <p class="small">Do not unplug USB while flashing.</p>
     </div>
   </div>
 
