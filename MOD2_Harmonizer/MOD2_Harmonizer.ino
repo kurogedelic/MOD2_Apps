@@ -1,19 +1,16 @@
 /* HAGIWO MOD2 / Harmonizer  (Seeed XIAO RP2350)
  *
- * After the Eventide H910, the 1975 box that was the first commercial digital audio effect
- * and the reason engineers say "glitch".
+ * A deliberately characterful digital pitch shifter built around a moving read pointer,
+ * overlapping taps and crossfades at splice points.
  *
  * It shifts pitch by reading a delay line at the wrong speed. Write at one rate, read at
  * another, and the pitch moves; the catch is that the read pointer then closes on the
- * write pointer and has to jump. Eventide's fix was to run two read taps and crossfade
- * between them at the jump, the way a tape splice is made. It helps, but the two taps sit
- * at different points of the waveform, so where they disagree in phase they cancel and the
- * level dips. That artifact is the sound of the machine. When Eventide later shipped the
- * de-glitched H949, some people missed it.
+ * write pointer and has to jump. Two read taps are crossfaded at the jump, the way a tape
+ * splice is made. The taps sit at different points of the waveform, so where they disagree
+ * in phase they can cancel and the level dips. That artifact is part of this effect's sound.
  *
  * The pitch shifter sits inside the feedback loop rather than after it, so each repeat is
- * shifted again. A semitone down with the feedback up gives the descending cascade the
- * H910 is known for.
+ * shifted again. A semitone down with the feedback up gives a descending cascade.
  *
  *   POT1   : pitch, an octave either way in semitones
  *   POT2   : feedback
@@ -45,7 +42,7 @@
 
 #define BUFLEN 16384      // enough for the longest delay plus a splice window
 #define WINDOW 4096.0f    // splice window, 84ms. At an octave up this splices about 12
-                          // times a second, which is roughly where the original sat.
+                          // times a second, giving a deliberately gritty octave setting.
 #define XFTAB  257        // crossfade table
 
 #define DRY    0.5f
@@ -198,14 +195,11 @@ void loop() {
   float x1 = pot1raw * (1.0f / 4095.0f);
   float x2 = pot2raw * (1.0f / 4095.0f);
 
-  // Quantised, because the thing is called a Harmonizer. Middle of the knob is unison,
-  // matching the original where middle C on the keyboard remote meant a ratio of 1.00.
+  // Quantised semitone control. Middle of the knob is unison.
   semitone = (int)lroundf(x1 * 24.0f) - 12;
 
-  // The H910's master clock was a free-running LC oscillator rather than a crystal, so it
-  // drifted slowly and never quite agreed with itself. That wander is why the front panel
-  // display flickered, and it is part of why the box thickens a sound rather than just
-  // transposing it.
+  // A slow random walk adds a small amount of clock-like wander so sustained sounds do not
+  // remain perfectly static.
   rng = rng * 1664525u + 1013904223u;
   drift += ((float)(int32_t)rng * (1.0f / 2147483648.0f)) * 0.00004f;
   drift *= 0.999f;
