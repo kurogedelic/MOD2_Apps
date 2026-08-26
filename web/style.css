@@ -113,6 +113,12 @@ select { min-width: 132px; padding-right: 28px; }
   font-weight: 600;
   letter-spacing: -.01em;
 }
+.app-title-link {
+  text-decoration: none;
+}
+.app-title-link:hover {
+  color: var(--accent);
+}
 
 .tag {
   display: inline-block;
