@@ -40,6 +40,10 @@ function firmwareUrl(app) {
   return `./firmware/${app.id}.uf2`;
 }
 
+function readmeUrl(app) {
+  return `https://github.com/kurogedelic/MOD2_Apps/blob/main/${app.id}/README.md`;
+}
+
 function updateCategoryFilter() {
   const group = groupFilterEl.value;
   const categories = [...new Set(
@@ -85,7 +89,11 @@ function render() {
     head.className = 'card-head';
 
     const title = document.createElement('h2');
-    title.textContent = app.name;
+    const titleLink = document.createElement('a');
+    titleLink.className = 'app-title-link';
+    titleLink.href = readmeUrl(app);
+    titleLink.textContent = app.name;
+    title.append(titleLink);
 
     const tag = document.createElement('span');
     tag.className = `tag${app.tested ? '' : ' untested'}`;
