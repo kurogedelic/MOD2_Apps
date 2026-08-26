@@ -19,8 +19,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-button, input { font: inherit; }
-button { appearance: none; }
+button, input, select { font: inherit; }
+button, select { appearance: none; }
 
 .shell {
   width: min(980px, calc(100% - 40px));
@@ -59,15 +59,14 @@ h1 {
 }
 
 .toolbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto auto auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 10px;
   padding: 28px 0 16px;
 }
 
-#search {
-  width: min(360px, 100%);
+#search, select {
   height: 40px;
   padding: 0 12px;
   background: var(--soft);
@@ -76,12 +75,15 @@ h1 {
   border-radius: 10px;
   outline: none;
 }
-#search:focus { border-color: var(--line); }
+#search:focus, select:focus { border-color: var(--line); }
 #search::placeholder { color: var(--muted); }
+select { min-width: 132px; padding-right: 28px; }
 
 .status {
+  min-width: 70px;
   color: var(--muted);
   font-size: 13px;
+  text-align: right;
 }
 .status.success { color: var(--accent); }
 .status.error { color: var(--danger); }
@@ -93,12 +95,11 @@ h1 {
 }
 
 .card {
-  min-height: 128px;
+  min-height: 112px;
   padding: 20px 0;
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
   column-gap: 16px;
   align-items: center;
 }
@@ -121,11 +122,7 @@ h1 {
 }
 .tag.untested { color: var(--muted); }
 
-.description { display: none; }
-
 .actions {
-  grid-column: 2;
-  grid-row: 1 / span 2;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -141,7 +138,7 @@ h1 {
 }
 
 .flash-btn {
-  min-width: 82px;
+  min-width: 70px;
   padding: 0 16px;
   border: 0;
   background: var(--accent);
@@ -213,10 +210,11 @@ h1 {
 
 .hidden { display: none !important; }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .shell { width: min(100% - 24px, 980px); padding-top: 16px; }
-  .toolbar { align-items: stretch; flex-direction: column; gap: 10px; }
-  #search { width: 100%; }
+  .toolbar { grid-template-columns: 1fr 1fr; }
+  #search { grid-column: 1 / -1; }
+  .status { text-align: left; }
   .apps { grid-template-columns: 1fr; }
   .card:nth-child(odd), .card:nth-child(even) { padding-left: 0; padding-right: 0; border-left: 0; }
 }
