@@ -10,7 +10,8 @@ These are written for this module rather than ported onto it. It has one input, 
 knobs and two gate jacks, so most effects have to be rethought before they fit: the
 granular app spends no control on density and schedules grains for constant overlap
 instead, the compressor cannot have an audio sidechain but can have a gate one, and the
-spring reverb works precisely because the input rolls off at 7.2kHz. Where a constraint
+spring reverb works precisely because the input rolls off at 7.2kHz, and the speech
+app has nothing to process, so it drones a vowel until a gate shows up. Where a constraint
 came up, the notes in each app say what was done about it.
 
 Apps marked *untested* compile and run but have not been listened to on hardware yet.
@@ -57,6 +58,12 @@ Apps marked *untested* compile and run but have not been listened to on hardware
 |---|---|
 | [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
 | [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
+
+### Voice
+
+| App | |
+|---|---|
+| [Klattsch](MOD2_Klattsch) | Parallel formant speech. Live vowels, and a few phrases on a gate — *untested* |
 
 ### Utility
 
