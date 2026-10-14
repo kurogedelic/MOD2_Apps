@@ -127,6 +127,7 @@ select { min-width: 132px; padding-right: 28px; }
   font-size: 12px;
 }
 .tag.untested { color: var(--muted); }
+.tag.beta { color: var(--accent); }
 
 .actions {
   display: flex;
