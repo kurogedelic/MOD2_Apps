@@ -66,7 +66,7 @@ function render() {
   const category = categoryFilterEl.value;
 
   const visible = apps.filter((app) => {
-    const matchesSearch = `${app.name} ${app.group} ${app.category}`.toLowerCase().includes(needle);
+    const matchesSearch = `${app.name} ${app.group} ${app.category} ${app.status || ''}`.toLowerCase().includes(needle);
     const matchesGroup = group === 'all' || app.group === group;
     const matchesCategory = category === 'all' || app.category === category;
     return matchesSearch && matchesGroup && matchesCategory;
@@ -96,8 +96,12 @@ function render() {
     title.append(titleLink);
 
     const tag = document.createElement('span');
-    tag.className = `tag${app.tested ? '' : ' untested'}`;
-    tag.textContent = app.tested ? `${app.group} · ${app.category}` : `${app.group} · ${app.category} · Untested`;
+    const status = app.status === 'beta' ? 'beta' : (app.tested ? '' : 'untested');
+    tag.className = `tag${status ? ` ${status}` : ''}`;
+    const statusLabel = status === 'beta' ? 'Beta' : (status === 'untested' ? 'Untested' : '');
+    tag.textContent = statusLabel
+      ? `${app.group} · ${app.category} · ${statusLabel}`
+      : `${app.group} · ${app.category}`;
     head.append(title, tag);
 
     const actions = document.createElement('div');

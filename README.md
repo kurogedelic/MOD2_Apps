@@ -15,6 +15,9 @@ app has nothing to process, so it drones a vowel until a gate shows up. Where a 
 came up, the notes in each app say what was done about it.
 
 Apps marked *untested* compile and run but have not been listened to on hardware yet.
+Apps marked *beta* are ready to flash and try; a listen on the module is still open.
+
+Prebuilt firmware flashes from the browser at [kurogedelic.github.io/MOD2_Apps](https://kurogedelic.github.io/MOD2_Apps/).
 
 ### Filters and dynamics
 
@@ -63,7 +66,7 @@ Apps marked *untested* compile and run but have not been listened to on hardware
 
 | App | |
 |---|---|
-| [Klattsch](MOD2_Klattsch) | Parallel formant speech. Live vowels, and a few phrases on a gate — *untested* |
+| [Klattsch](MOD2_Klattsch) | Parallel formant speech. Live vowels, and a few phrases on a gate — *beta* |
 
 ### Utility
 

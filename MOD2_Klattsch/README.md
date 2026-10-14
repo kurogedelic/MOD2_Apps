@@ -1,6 +1,6 @@
 # Klattsch
 
-> Not yet tested on hardware. Compiles and runs, but nobody has listened to it.
+> Beta. Ready to flash and try. A listen on the module is still open.
 
 A parallel-formant voice. A glottal pulse (or noise, for a whisper) feeds three
 bandpass formants, which is enough to read as a vowel. The module has two knobs,

@@ -12,6 +12,6 @@
   {"id":"MOD2_Autotune","name":"Autotune","group":"Effect","category":"Pitch","description":"Pitch tracking and correction on the MOD2 hardware.","tested":false},
   {"id":"MOD2_Sampler","name":"Sampler","group":"Source","category":"Sampling","description":"Auto-triggered recording, playable at any speed in either direction.","tested":true},
   {"id":"MOD2_Granular","name":"Granular","group":"Source","category":"Sampling","description":"Rolling grain buffer with constant overlap scheduling and freeze.","tested":true},
-  {"id":"MOD2_Klattsch","name":"Klattsch","group":"Source","category":"Speech","description":"Parallel-formant speech. Live vowels and gated phrases.","tested":false},
+  {"id":"MOD2_Klattsch","name":"Klattsch","group":"Source","category":"Speech","description":"Parallel-formant speech. Live vowels and gated phrases.","tested":false,"status":"beta"},
   {"id":"MOD2_Calibrate","name":"Calibrate","group":"Utility","category":"Calibration","description":"Measure the per-unit ADC BIAS and verify the input path is alive.","tested":true}
 ]
