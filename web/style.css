@@ -129,6 +129,19 @@ select { min-width: 132px; padding-right: 28px; }
 .tag.untested { color: var(--muted); }
 .tag.beta { color: var(--accent); }
 
+.badge-new {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  vertical-align: 2px;
+}
+
 .actions {
   display: flex;
   align-items: center;
