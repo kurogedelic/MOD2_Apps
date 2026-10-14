@@ -1,6 +1,6 @@
-# Klattsch
+# Formant
 
-> Beta. Ready to flash and try. A listen on the module is still open.
+> **NEW.** Beta. Ready to flash and try. A listen on the module is still open.
 
 A parallel-formant voice. A glottal pulse (or noise, for a whisper) feeds three
 bandpass formants, which is enough to read as a vowel. The module has two knobs,
@@ -45,9 +45,40 @@ Left out, relative to the browser instrument: the text compiler, vibrato and tre
 
 `OUTLVL`, `F0_LO`, `SLOT_LO`, `SLOT_HI` and `SCALE_HI` at the top of the sketch set the ranges.
 
-## Credit
+## License
 
-The voice is [klattsch](https://github.com/tgies/klattsch) by Tony Gies, MIT licensed. The pulse, the noise source, the three bandpasses, the soft clip and the phoneme rows come from there (banks `klatt1980-en` and `ja-mokhtari-2000`; English frequencies from Klatt, D.H. (1980), JASA 67(3), amplitudes as fitted in that bank for a three-formant parallel synth). The embedded layout of the sample routine follows the C port in [klattsch-pd-test](https://github.com/kurogedelic/klattsch-pd-test). The MIT copyright and permission text is in [`klattsch_core.h`](klattsch_core.h).
+Formant, as part of this repository, is released under the MIT License.
+Copyright (c) 2026 Leo Kuroshita. The permission text for that license is in [LICENSE](../LICENSE).
+
+The synthesizer and the phoneme rows are adapted from [klattsch](https://github.com/tgies/klattsch) by Tony Gies, which is also MIT licensed. The pulse, the noise source, the three bandpasses, the soft clip, and the formant numbers come from klattsch (banks `klatt1980-en` and `ja-mokhtari-2000`; English frequencies from Klatt, D.H. (1980), JASA 67(3), amplitudes as fitted in that bank for a three-formant parallel synth). The layout of the sample routine follows the C port in [klattsch-pd-test](https://github.com/kurogedelic/klattsch-pd-test). The same notice is included in [`klattsch_core.h`](klattsch_core.h).
+
+### klattsch
+
+klattsch by Tony Gies — https://github.com/tgies/klattsch
+
+```
+MIT License
+
+Copyright (c) 2026 Tony Gies
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ---
 

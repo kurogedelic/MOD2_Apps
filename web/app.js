@@ -66,7 +66,7 @@ function render() {
   const category = categoryFilterEl.value;
 
   const visible = apps.filter((app) => {
-    const matchesSearch = `${app.name} ${app.group} ${app.category} ${app.status || ''}`.toLowerCase().includes(needle);
+    const matchesSearch = `${app.name} ${app.group} ${app.category} ${app.status || ''} ${app.new ? 'new' : ''}`.toLowerCase().includes(needle);
     const matchesGroup = group === 'all' || app.group === group;
     const matchesCategory = category === 'all' || app.category === category;
     return matchesSearch && matchesGroup && matchesCategory;
@@ -94,6 +94,12 @@ function render() {
     titleLink.href = readmeUrl(app);
     titleLink.textContent = app.name;
     title.append(titleLink);
+    if (app.new) {
+      const badge = document.createElement('span');
+      badge.className = 'badge-new';
+      badge.textContent = 'NEW';
+      title.append(badge);
+    }
 
     const tag = document.createElement('span');
     const status = app.status === 'beta' ? 'beta' : (app.tested ? '' : 'untested');

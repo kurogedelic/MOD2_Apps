@@ -1,4 +1,4 @@
-/* HAGIWO MOD2 / Klattsch  (Seeed XIAO RP2350)
+/* HAGIWO MOD2 / Formant  (Seeed XIAO RP2350)
  *
  * A parallel-formant voice. Three bandpass formants sit on a glottal pulse,
  * which is the late-70s way of making something that reads as a vowel. This
@@ -53,7 +53,7 @@
 #define SCALE_HI 1.25f    // formant scale while IN2 is held
 #define NPROG  5          // live vowel plus KLATTSCH_PHRASE_COUNT
 
-/* Glottal colour. Voiced is the klattsch default (no extra breath). Breathy
+/* Glottal colour. Voiced is the plain pulse from klattsch (no extra breath). Breathy
  * keeps the pulse and adds noise. Whisper drops the pulse. */
 typedef struct { float asp, effort, tilt, vmul; const char *name; } VoiceColor;
 static const VoiceColor COLORS[3] = {

@@ -1,4 +1,4 @@
-/* Parallel-formant voice, for the MOD2 Klattsch sketch.
+/* Parallel-formant voice, for the MOD2 Formant sketch.
  *
  * Derived from Tony Gies's klattsch (https://github.com/tgies/klattsch): the
  * Rosenberg glottal pulse, xorshift noise, three constant-skirt-gain bandpass

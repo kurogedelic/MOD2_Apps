@@ -10,14 +10,20 @@ These are written for this module rather than ported onto it. It has one input, 
 knobs and two gate jacks, so most effects have to be rethought before they fit: the
 granular app spends no control on density and schedules grains for constant overlap
 instead, the compressor cannot have an audio sidechain but can have a gate one, and the
-spring reverb works precisely because the input rolls off at 7.2kHz, and the speech
-app has nothing to process, so it drones a vowel until a gate shows up. Where a constraint
+spring reverb works precisely because the input rolls off at 7.2kHz, and Formant
+has nothing to process, so it drones a vowel until a gate shows up. Where a constraint
 came up, the notes in each app say what was done about it.
 
 Apps marked *untested* compile and run but have not been listened to on hardware yet.
 Apps marked *beta* are ready to flash and try; a listen on the module is still open.
 
 Prebuilt firmware flashes from the browser at [kurogedelic.github.io/MOD2_Apps](https://kurogedelic.github.io/MOD2_Apps/).
+
+### Voice
+
+| App | |
+|---|---|
+| [Formant](MOD2_Formant) | Parallel formant speech. Live vowels, and a few phrases on a gate — **NEW**, *beta* |
 
 ### Filters and dynamics
 
@@ -61,12 +67,6 @@ Prebuilt firmware flashes from the browser at [kurogedelic.github.io/MOD2_Apps](
 |---|---|
 | [Sampler](MOD2_Sampler) | Auto-triggered recording, played at any speed from either end |
 | [Granular](MOD2_Granular) | Rolling buffer of grains, with freeze |
-
-### Voice
-
-| App | |
-|---|---|
-| [Klattsch](MOD2_Klattsch) | Parallel formant speech. Live vowels, and a few phrases on a gate — *beta* |
 
 ### Utility
 
@@ -140,4 +140,12 @@ Disconnect the power ribbon cable before plugging in USB.
 
 ## License
 
-MIT
+The sketches in this repository are released under the MIT License.
+Copyright (c) 2026 Leo Kuroshita. The permission text is in [LICENSE](LICENSE).
+
+## Third-party
+
+[Formant](MOD2_Formant) adapts [klattsch](https://github.com/tgies/klattsch) by Tony Gies.
+klattsch is MIT licensed, Copyright (c) 2026 Tony Gies. The pulse, the noise source,
+the three bandpass formants, the soft clip, and the phoneme rows in Formant come from
+that project. The full MIT notice is in the [Formant README](MOD2_Formant/README.md#license).

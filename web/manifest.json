@@ -1,4 +1,5 @@
 [
+  {"id":"MOD2_Formant","name":"Formant","group":"Source","category":"Speech","description":"Parallel-formant speech. Live vowels and gated phrases.","tested":false,"status":"beta","new":true},
   {"id":"MOD2_SVF","name":"State Variable Filter","group":"Effect","category":"Filter","description":"LP, BP, HP and notch modes with resonance up to Q=30.","tested":true},
   {"id":"MOD2_DLPG","name":"Digital Low Pass Gate","group":"Effect","category":"Filter","description":"Buchla-style low-pass gate with a simulated vactrol response.","tested":true},
   {"id":"MOD2_Compressor","name":"Compressor","group":"Effect","category":"Dynamics","description":"Feed-forward compressor with a gate sidechain.","tested":false},
@@ -12,6 +13,5 @@
   {"id":"MOD2_Autotune","name":"Autotune","group":"Effect","category":"Pitch","description":"Pitch tracking and correction on the MOD2 hardware.","tested":false},
   {"id":"MOD2_Sampler","name":"Sampler","group":"Source","category":"Sampling","description":"Auto-triggered recording, playable at any speed in either direction.","tested":true},
   {"id":"MOD2_Granular","name":"Granular","group":"Source","category":"Sampling","description":"Rolling grain buffer with constant overlap scheduling and freeze.","tested":true},
-  {"id":"MOD2_Klattsch","name":"Klattsch","group":"Source","category":"Speech","description":"Parallel-formant speech. Live vowels and gated phrases.","tested":false,"status":"beta"},
   {"id":"MOD2_Calibrate","name":"Calibrate","group":"Utility","category":"Calibration","description":"Measure the per-unit ADC BIAS and verify the input path is alive.","tested":true}
 ]
